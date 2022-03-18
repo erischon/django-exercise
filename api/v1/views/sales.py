@@ -9,3 +9,6 @@ class ListSale(generics.ListAPIView):
 
 class CreateArticle(generics.CreateAPIView):
     serializer_class = ArticleSerializer
+
+class CreateSale(generics.CreateAPIView):
+    serializer_class = SaleSerializer
