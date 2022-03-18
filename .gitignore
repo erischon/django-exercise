@@ -13,3 +13,7 @@ node_modules
 /static/
 /medias/
 vq-django-exercise
+
+# Virtual Env
+.venv
+.env
