@@ -1,3 +1,5 @@
+from django.db.models import Avg, Sum, Q
+
 from rest_framework import serializers
 
 from sales.models import Sale, Article, ArticleCategory
@@ -42,11 +44,11 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class BoardSerializer(serializers.ModelSerializer):
-    """"""
+    """Sale Board"""
     category = serializers.CharField(source="article.category")
     article = serializers.CharField(source="article.name")
     total_sale = serializers.SerializerMethodField()
-    total_margin = serializers.SerializerMethodField()
+    margin = serializers.SerializerMethodField()
     last_sale = serializers.SerializerMethodField()
 
     class Meta:
@@ -59,12 +61,24 @@ class BoardSerializer(serializers.ModelSerializer):
             "last_sale",
         ]
 
-    
     def get_total_sale(self, obj):
-        return obj.quantity * obj.unit_selling_price
+        """"""
+        qs = Sale.objects.filter(article=obj.article)
+        total_quantity = qs.aggregate(Sum("quantity"))
+        total_unit_selling_price = qs.aggregate(Sum("unit_selling_price"))
+        return total_quantity["quantity__sum"] * total_unit_selling_price["unit_selling_price__sum"]
 
-    def get_total_margin(self, obj):
-        return obj.quantity * obj.unit_selling_price
+    def get_margin(self, obj):
+        """"""
+        qs = Article.objects.filter(id=obj.article.id)
+        qs2 = Sale.objects.filter(article=obj.article)
 
-    def get_total_last_sale(self, obj):
-        return obj.quantity * obj.unit_selling_price
+        total_sale = self.get_total_sale(obj)
+        total_cost = qs2.aggregate(Sum("quantity"))["quantity__sum"] + qs.aggregate(Sum("manufacturing_cost"))["manufacturing_cost__sum"]
+        margin = total_sale - total_cost
+        return (margin / total_cost) * 100
+
+    def get_last_sale(self, obj):
+        """"""
+        date = Sale.objects.filter(article=obj.article).latest("date")
+        return date.date
