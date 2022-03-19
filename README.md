@@ -20,13 +20,12 @@ Les prix sont exprimés dans une unité arbitraire (pas de notion de devise à g
 Vous devez implémenter une API REST, uniquement accessible à des utilisateurs authentifiés, permettant les opérations suivantes : 
 
 - [x] Ajout d’un article
-- [x] Ajout d’une vente 
-
-* Modification / suppression d’une vente, uniquement possible par l’utilisateur qui l’a créée
-* Liste (paginée par 25 éléments) des ventes (date, catégorie article, code article, nom article, quantité, prix de vente unitaire, prix de vente total)
+- [x] Ajout d’une vente
+- [x] Modification / suppression d’une vente, uniquement possible par l’utilisateur qui l’a créée
+- [x] Liste (paginée par 25 éléments) des ventes (date, catégorie article, code article, nom article, quantité, prix de vente unitaire, prix de vente total)
 * Bonus : liste agrégée des ventes (paginée par 25 éléments également) par article avec catégorie associée, totaux des prix de vente, pourcentage de marge, date de la dernière vente, ordonnée par totaux des prix de vente décroissants.
 
-Les opérations CRUD sur les articles/ventes doivent également être possibles depuis l'admin de Django, sans notion particulière de permissions.
+- [x] Les opérations CRUD sur les articles/ventes doivent également être possibles depuis l'admin de Django, sans notion particulière de permissions.
 
 # Pour démarrer
 

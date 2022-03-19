@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from rest_framework import routers
 
-from api.v1.views.sales import ListCreateArticle, ListCreateSale, PutSale, DeleteSale
+from api.v1.views.sales import ListCreateArticle, ListCreateSale, PutDeleteSale
 
 
 router = routers.DefaultRouter(trailing_slash=False)
@@ -13,10 +13,9 @@ urlpatterns = [
         include(
             [
                 path("", include(router.urls)),
-                path("article/", ListCreateArticle.as_view()),
+                path("articles/", ListCreateArticle.as_view()),
                 path("sales/", ListCreateSale.as_view()),
-                path("sales/<int:pk>/put", PutSale.as_view()),
-                path("sales/<int:pk>/delete", DeleteSale.as_view()),
+                path("sales/<int:pk>/", PutDeleteSale.as_view()),
             ]
         ),
     )
