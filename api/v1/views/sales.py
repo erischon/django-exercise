@@ -3,23 +3,33 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
 
 from sales.models import Article, ArticleCategory, Sale
-from api.v1.serializers.sales import SaleSerializer, SaleListSerializer, ArticleSerializer
+from api.v1.serializers.sales import (
+    SaleSerializer,
+    SaleListSerializer,
+    ArticleSerializer,
+)
 from sales.paginators import SalePagination
 
 
 class ListCreateArticle(generics.ListCreateAPIView):
     """"""
+
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = [IsAuthenticated]
-    authentication_classes = [SessionAuthentication,]
+    authentication_classes = [
+        SessionAuthentication,
+    ]
 
 
 class ListCreateSale(generics.ListCreateAPIView):
     """"""
+
     queryset = Sale.objects.all()
     permission_classes = [IsAuthenticated]
-    authentication_classes = [SessionAuthentication,]
+    authentication_classes = [
+        SessionAuthentication,
+    ]
     pagination_class = SalePagination
 
     def perform_create(self, serializer):
@@ -35,9 +45,12 @@ class ListCreateSale(generics.ListCreateAPIView):
 
 class PutDeleteSale(generics.RetrieveUpdateDestroyAPIView):
     """"""
+
     serializer_class = SaleSerializer
     permission_classes = [IsAuthenticated]
-    authentication_classes = [SessionAuthentication,]
+    authentication_classes = [
+        SessionAuthentication,
+    ]
 
     def get_queryset(self):
-        return Sale.objects.filter(author = self.request.user)
+        return Sale.objects.filter(author=self.request.user)
