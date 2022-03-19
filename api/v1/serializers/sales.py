@@ -47,6 +47,7 @@ class BoardSerializer(serializers.ModelSerializer):
     """Sale Board"""
     category = serializers.CharField(source="article.category")
     article = serializers.CharField(source="article.name")
+    # article = serializers.SerializerMethodField()
     total_sale = serializers.SerializerMethodField()
     margin = serializers.SerializerMethodField()
     last_sale = serializers.SerializerMethodField()
@@ -60,6 +61,11 @@ class BoardSerializer(serializers.ModelSerializer):
             "margin",
             "last_sale",
         ]
+
+    # def get_article(self, obj):
+    #     qs = Sale.objects.filter(article=obj.article)
+    #     article = serializers.CharField(source="article.name")
+    #     return qs
 
     def get_total_sale(self, obj):
         """"""

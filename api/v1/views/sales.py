@@ -65,7 +65,7 @@ class BoardView(generics.ListAPIView):
     # queryset = Sale.objects.select_related("article").order_by("article__name")
     queryset = Sale.objects.all().order_by("article__name")
     # queryset = Prefetch('pop_quizes', queryset=models.PopQuiz.objects.select_related('pop_quiz')('pop_quiz__pop_answers')
-    # serializer_class = BoardSerializer
+    serializer_class = BoardSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication]
     pagination_class = SalePagination
