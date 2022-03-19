@@ -1,19 +1,20 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+
 from sales.models import Article, ArticleCategory, Sale
 from api.v1.serializers.sales import SaleSerializer, ArticleSerializer
 
 
-class CreateArticle(generics.CreateAPIView):
+class ListCreateArticle(generics.ListCreateAPIView):
+    queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    permission_classes = [IsAuthenticated]
 
 
-class ListSale(generics.ListAPIView):
+class ListCreateSale(generics.ListCreateAPIView):
     queryset = Sale.objects.all()
     serializer_class = SaleSerializer
-
-
-class CreateSale(generics.CreateAPIView):
-    serializer_class = SaleSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class PutSale(generics.UpdateAPIView):
