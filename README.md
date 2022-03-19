@@ -23,7 +23,7 @@ Vous devez implémenter une API REST, uniquement accessible à des utilisateurs 
 - [x] Ajout d’une vente
 - [x] Modification / suppression d’une vente, uniquement possible par l’utilisateur qui l’a créée
 - [x] Liste (paginée par 25 éléments) des ventes (date, catégorie article, code article, nom article, quantité, prix de vente unitaire, prix de vente total)
-* Bonus : liste agrégée des ventes (paginée par 25 éléments également) par article avec catégorie associée, totaux des prix de vente, pourcentage de marge, date de la dernière vente, ordonnée par totaux des prix de vente décroissants.
+- [x] Bonus : liste agrégée des ventes (paginée par 25 éléments également) par article avec catégorie associée, totaux des prix de vente, pourcentage de marge, date de la dernière vente, ~~ordonnée par totaux des prix de vente décroissants~~.
 
 - [x] Les opérations CRUD sur les articles/ventes doivent également être possibles depuis l'admin de Django, sans notion particulière de permissions.
 

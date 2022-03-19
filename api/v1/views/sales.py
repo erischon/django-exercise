@@ -1,8 +1,6 @@
 from django.db.models import Prefetch
 
 from rest_framework import generics
-from rest_framework import viewsets
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
 
@@ -18,6 +16,7 @@ from sales.paginators import SalePagination
 
 class ListCreateArticle(generics.ListCreateAPIView):
     """List and Create Articles."""
+
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = [IsAuthenticated]
@@ -28,6 +27,7 @@ class ListCreateArticle(generics.ListCreateAPIView):
 
 class ListCreateSale(generics.ListCreateAPIView):
     """List and Create sales."""
+
     queryset = Sale.objects.all()
     permission_classes = [IsAuthenticated]
     authentication_classes = [
@@ -49,6 +49,7 @@ class ListCreateSale(generics.ListCreateAPIView):
 
 class PutDeleteSale(generics.RetrieveUpdateDestroyAPIView):
     """Put and Delete for a Sale."""
+
     serializer_class = SaleSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [
