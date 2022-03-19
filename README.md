@@ -19,8 +19,8 @@ Les prix sont exprimés dans une unité arbitraire (pas de notion de devise à g
 
 Vous devez implémenter une API REST, uniquement accessible à des utilisateurs authentifiés, permettant les opérations suivantes : 
 
-[x] Ajout d’un article
-[x] Ajout d’une vente 
+- [x] Ajout d’un article
+- [x] Ajout d’une vente 
 
 * Modification / suppression d’une vente, uniquement possible par l’utilisateur qui l’a créée
 * Liste (paginée par 25 éléments) des ventes (date, catégorie article, code article, nom article, quantité, prix de vente unitaire, prix de vente total)
