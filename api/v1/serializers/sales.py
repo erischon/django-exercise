@@ -4,6 +4,7 @@ from sales.models import Sale, Article, ArticleCategory
 
 
 class SaleListSerializer(serializers.ModelSerializer):
+    """Serializer for List of Sales."""
     category = serializers.CharField(source="article.category")
     article = serializers.CharField(source="article.name")
     code = serializers.CharField(source="article.code")
@@ -26,6 +27,7 @@ class SaleListSerializer(serializers.ModelSerializer):
 
 
 class SaleSerializer(serializers.ModelSerializer):
+    """Basic Serializer for Sales."""
     class Meta:
         model = Sale
         fields = "__all__"
@@ -33,6 +35,7 @@ class SaleSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
+    """Basic Serializer for Articles."""
     class Meta:
         model = Article
         fields = "__all__"

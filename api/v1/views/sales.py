@@ -12,8 +12,7 @@ from sales.paginators import SalePagination
 
 
 class ListCreateArticle(generics.ListCreateAPIView):
-    """"""
-
+    """List and Create Articles."""
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = [IsAuthenticated]
@@ -23,8 +22,7 @@ class ListCreateArticle(generics.ListCreateAPIView):
 
 
 class ListCreateSale(generics.ListCreateAPIView):
-    """"""
-
+    """List and Create sales."""
     queryset = Sale.objects.all()
     permission_classes = [IsAuthenticated]
     authentication_classes = [
@@ -33,10 +31,11 @@ class ListCreateSale(generics.ListCreateAPIView):
     pagination_class = SalePagination
 
     def perform_create(self, serializer):
-        """"""
+        """Adding the author of Sale."""
         serializer.save(author=self.request.user)
 
     def get_serializer_class(self):
+        """Get the Serializer we want."""
         if self.request.method == "GET":
             return SaleListSerializer
         else:
@@ -44,8 +43,7 @@ class ListCreateSale(generics.ListCreateAPIView):
 
 
 class PutDeleteSale(generics.RetrieveUpdateDestroyAPIView):
-    """"""
-
+    """Put and Delete for a Sale."""
     serializer_class = SaleSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [
@@ -53,4 +51,5 @@ class PutDeleteSale(generics.RetrieveUpdateDestroyAPIView):
     ]
 
     def get_queryset(self):
+        """Only for the author of the sale."""
         return Sale.objects.filter(author=self.request.user)
