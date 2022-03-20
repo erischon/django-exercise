@@ -13,10 +13,10 @@ urlpatterns = [
         include(
             [
                 path("", include(router.urls)),
-                path("articles/", ListCreateArticle.as_view()),
-                path("sales/", ListCreateSale.as_view()),
-                path("sales/<int:pk>/", PutDeleteSale.as_view()),
-                path("board/", BoardView.as_view()),
+                path("articles/", ListCreateArticle.as_view(), name="articles-list-create"),
+                path("sales/", ListCreateSale.as_view(), name="sales-list-create"),
+                path("sales/<int:pk>/", PutDeleteSale.as_view(), name="sales-put-delete"),
+                path("board/", BoardView.as_view(), name="board"),
             ]
         ),
     )
